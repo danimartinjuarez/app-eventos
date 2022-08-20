@@ -19,7 +19,7 @@ class EventFactory extends Factory
         return [
             'name'=> $this->faker->jobTitle,
             'description' => $this->faker->realText,
-            'img' => $this->faker->imageUrl('cats', true, 'Faker'),
+            'img' => $this->faker->imageUrl,
             'places' => $this->faker->numberBetween($min = 1, $max = 20),
         ];
     }
