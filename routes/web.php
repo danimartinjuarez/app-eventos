@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventControler;
+use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,12 +14,16 @@ use App\Http\Controllers\EventControler;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */
 
-/* Route::get('/', function () {
+ Route::get('/', function () {
     return view('welcome');
-}); */
-Route::get('/', [EventControler::class , 'index']);
+});
+Auth::routes();
+Route::get('/', [EventControler::class , 'index'])->name('homepage');
+Route::delete('delete/{id}', [EventControler::class , 'destroy'])->name('delete');
+
 
 Route::middleware([
     'auth:sanctum',

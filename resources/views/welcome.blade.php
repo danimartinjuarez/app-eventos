@@ -409,7 +409,7 @@
 
     <body class="antialiased">
         <div
-            class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+            class=" relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @auth
@@ -428,20 +428,34 @@
             <div>
                 @foreach ($events as $event)
                 <div class="card" style="width: 18rem;">
-                    <img src={{ $event->img }} class=" card-img-top" alt="...">
+                    <img src="{{ $event->img }}" class=" card-img-top" alt="...">
                     <div class="card-body">
 
                         <h1 class="card-title">{{ $event->name }}</h1>
                         <p class=" card-text">{{ $event->description }}</p>
                         <p class="card-text">{{ $event->places }}</p>
                     </div>
-                    @endforeach
+                    <form action="{{ route('delete', ['id'=>$event->id]) }}" method="post">
+                        @method ('delete')
+                        @csrf
+                        <button type="submit" name="delete" class="btn btn-primary" onclick="return confirm('Estas seguro que quieres borrar? {{$event->name}}  {{$event->id}}')">
+                            <img src="htps://www.ordenencasa.shop/wp-content/uploads/2020/05/papelera-redonda-en-madera-de-bambu.jpg"/>
+                        </button>
+                    </form>
                 </div>
+                @endforeach
+            </div>
 
-
-
-
+        </div>
     </body>
+
+
+
+
+
+
+
+
 
 
 

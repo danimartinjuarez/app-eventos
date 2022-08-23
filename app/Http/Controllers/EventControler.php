@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\core\view;
+use view;
 use App\Models\Event;
 use Illuminate\Http\Request;
+
 
 class EventControler extends Controller
 {
@@ -83,6 +84,7 @@ class EventControler extends Controller
      */
     public function destroy($id)
     {
-        //
+         Event::destroy($id);
+         return redirect()->route('homepage');
     }
 }
